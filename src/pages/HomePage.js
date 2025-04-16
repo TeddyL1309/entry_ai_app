@@ -9,8 +9,8 @@ const HomePage = ({ onTestSelect }) => {
           entry.ai
         </h1>
         <div className="bg-blue-50 p-6 rounded-lg inline-block text-center mx-auto">
-          <p className="text-gray-700 text-lg">
-            적성검사 결과와 당신의 간단한 이력만 있다면<br />
+          <p className="text-gray-700 text-base">
+            적성검사 결과와 간단한 이력만 있다면<br />
             5분만에 맞춤형 엔트리시트 완성!
           </p>
         </div>
