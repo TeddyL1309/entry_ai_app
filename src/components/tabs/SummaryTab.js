@@ -106,10 +106,20 @@ const SummaryTab = ({ results, generateRecommendationChartData, scores }) => {
             // 5점인 항목 필터링
             const maxScoreItems = Object.entries(scores).filter(([_, score]) => score === 5);
             
-            // 5점인 항목이 있으면 모두 표시, 없으면 상위 3개 표시
-            const itemsToShow = maxScoreItems.length > 0 
-              ? maxScoreItems 
-              : Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 3);
+            // 5점인 항목이 있더라도 3개 미만이면 다음 높은 점수 항목을 추가
+            let itemsToShow = [...maxScoreItems];
+            
+            // 5점 항목이 3개 미만인 경우, 추가 항목 필요
+            if (itemsToShow.length < 3) {
+              // 5점 아닌 항목들을 점수 내림차순으로 정렬
+              const otherItems = Object.entries(scores)
+                .filter(([_, score]) => score < 5)
+                .sort((a, b) => b[1] - a[1]);
+              
+              // 필요한 만큼 추가 (3개까지)
+              const additionalItems = otherItems.slice(0, 3 - itemsToShow.length);
+              itemsToShow = [...itemsToShow, ...additionalItems];
+            }
             
             return itemsToShow.map(([compId, score]) => {
               const competency = COMPETENCIES.find(c => c.id === compId);
