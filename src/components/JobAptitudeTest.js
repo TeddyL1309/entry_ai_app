@@ -169,7 +169,7 @@ const QuestionnaireSection = ({ scores, onScoreChange, onNext }) => {
               <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="font-medium">{competency.name}</h3>
-                  <p className="text-sm text-gray-600">{competency.description}</p>
+                  <p className="text-sm text-gray-600" style={{ whiteSpace: 'pre-line' }}>{competency.description}</p>
                 </div>
                 <div className="flex items-center">
                   {[1, 2, 3, 4, 5].map((value) => (
